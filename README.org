@@ -1,9 +1,7 @@
 #+TITLE:     FASLPATH
-#+AUTHOR:    Peter von Etter
-#+EMAIL:     peterve@gmail.com
-#+LANGUAGE:  en
 #+TEXT:      An introduction to the Faslpath loader.
-#+OPTIONS:   H:3 num:t toc:t \n:nil @:t email:t ::t |:t ^:t -:t f:t *:nil TeX:t LaTeX:nil skip:t d:nil tags:not-in-toc
+
+*This code was moved here from the original google code repository. It has been superseded by package-inferred-system provided by ASDF. This library should not be used.*
 
 * Introduction
 
@@ -41,7 +39,7 @@ foo/util.lisp:
 :    (:use :cl)
 :    (:export #:FOO-TOOL))
 :  ...
-:
+
 bar/bar.lisp:
 
 :  (defpackage :bar.bar
@@ -117,18 +115,20 @@ Example:
 
 In the file my-app/main.lisp you need:
 
-:  (defpackage :my-app.main
-:    (:use :cl
-:          :my-app.tools
-:          :my-app.macros
-:          :my-app.asdf-deps
-:          :my-external-lib.main)
-:    (:export #:RUN-MY-APP
-:             #:MAIN))
-:
-:  (in-package :my-app.main)
-:
-:  [ ... Code follows ... ]
+#+begin_example
+(defpackage :my-app.main
+  (:use :cl
+        :my-app.tools
+        :my-app.macros
+        :my-app.asdf-deps
+        :my-external-lib.main)
+  (:export #:RUN-MY-APP
+           #:MAIN))
+
+(in-package :my-app.main):
+
+[ ... Code follows ... ]
+#+end_example
 
 Now COMPILE-PACKAGE and LOAD-PACKAGE will know what the symbol
 "MY-APP.MAIN" means, and will be able to find it.  One could now, for
@@ -202,18 +202,20 @@ the current file ever becomes loaded.
 
 Example:
 
-:  '(:my-app.tools
-:    :my-app.macros
-:    :my-app.asdf-deps
-:    :my-external-lib.main
-:    "file-1"
-:    "file-2"
-:    "subdir/file-3"
-:    "subdir/file-4")
-:
-:  (in-package :my-app.main)
-:
-:  [ ... Code follows ... ]
+#+begin_example
+'(:my-app.tools
+  :my-app.macros
+  :my-app.asdf-deps
+  :my-external-lib.main
+  "file-1"
+  "file-2"
+  "subdir/file-3"
+  "subdir/file-4")
+
+(in-package :my-app.main)
+
+[ ... Code follows ... ]
+#+end_example
 
 * Package Interface
 
@@ -357,9 +359,3 @@ currently needed:
 3. Create a compile-IMPL.sh script
 
 -----
-
-* COMMENT html style
-
-# Local Variables:
-# org-export-html-style: "<style type=\"text/css\">\n  html {\n	font-family: Times, serif;\n	font-size: 12pt;\n  }\n  body {margin-left: 5em; margin-right: 5em} \n .title { text-align: center; }\n  .todo  { color: red; }\n  .done { color: green; }\n  .timestamp { color: grey }\n  .timestamp-kwd { color: CadetBlue }\n  .tag { background-color:lightblue; font-weight:normal }\n  .target { background-color: lavender; }\n  pre {\n	border: 1pt solid #AEBDCC;\n	background-color: #F3F5F7;\n	padding: 5pt;\n	font-family: courier, monospace;\n  }\n  table { border-collapse: collapse; }\n  td, th {\n	vertical-align: top;\n	<!--border: 1pt solid #ADB9CC;-->\n  }\n</style>"
-# End:
