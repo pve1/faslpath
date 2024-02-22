@@ -24,22 +24,22 @@
 (load (compile-file (merge-pathnames "tests.lisp" *load-truename*)))
 (load (compile-file (merge-pathnames "extras.lisp" *load-truename*)))
 
-(let ((faslpath.loader:*faslpath* 
+(let ((faslpath.loader:*faslpath*
        (list (make-pathname :directory
                             (butlast (pathname-directory *load-truename*)))))
-  
-      (*default-pathname-defaults* 
+
+      (*default-pathname-defaults*
        (make-pathname :directory (pathname-directory *load-truename*))))
-  
+
   #-ccl
   (faslpath.loader:compile-package :faslpath.loader t)
-  
+
   ;; Concatenating fasls doesn't seem to work on ccl, so we use the
   ;; loader instead.
   #+ccl
   (faslpath.loader:compile-package :faslpath.loader t t)
 
-  (faslpath.tools:concatenate-binary-files 
+  (faslpath.tools:concatenate-binary-files
    (list (faslpath::fasl-file "split-sequence")
          (faslpath::fasl-file "empty")
          (faslpath::fasl-file "tools")
@@ -48,6 +48,6 @@
 
   ;; Copy to "faslpath"
   #+ccl
-  (faslpath.tools:concatenate-binary-files 
+  (faslpath.tools:concatenate-binary-files
    (list (faslpath::fasl-file "loader-loader"))
    (faslpath::fasl-file "faslpath")))

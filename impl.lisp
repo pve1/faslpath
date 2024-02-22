@@ -21,7 +21,7 @@
 (defpackage #:faslpath.impl
   (:use #:cl)
   (:export ;; Needed by faslpath.extras
-           #:getenv 
+           #:getenv
            #:save-lisp-and-die
 
            ;; Needed by faslpath.tests
@@ -29,7 +29,7 @@
 
 (in-package :faslpath.impl)
 
-;;;; SBCL 
+;;;; SBCL
 
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)

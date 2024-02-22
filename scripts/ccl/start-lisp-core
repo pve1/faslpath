@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -z "$1" ]
-then 
+then
     echo "Usage: `basename $0` CORE-NAME [PARAMETERS]"
     exit 1
 fi

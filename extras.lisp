@@ -26,7 +26,7 @@
 
 (defvar *faslpath-core-directory*)
 
-(defvar *faslpath-core-directory-env-variable* 
+(defvar *faslpath-core-directory-env-variable*
   "FASLPATH_CORE_DIR")
 
 (defun default-faslpath-core-dir ()
@@ -36,7 +36,7 @@
 
 (defun make-package-lisp-core (package-name &optional core-path) ;; /foo/bar/blah.core
   ;; Figure out where to save the core.
-  (let* ((*default-pathname-defaults* 
+  (let* ((*default-pathname-defaults*
           (let ((env (getenv *faslpath-core-directory-env-variable*)))
             (if env
                 (pathname (concatenate 'string env "/"))
@@ -44,8 +44,8 @@
 
          (core-name (if core-path
                         core-path
-                        (merge-pathnames 
-                         (make-pathname 
+                        (merge-pathnames
+                         (make-pathname
                           :name (faslpath.loader::resolve-package package-name)
                           :type "core")))))
     (when core-name

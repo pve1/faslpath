@@ -45,7 +45,7 @@ lang="en" xml:lang="en">
 	font-family: Times, serif;
 	font-size: 12pt;
   }
-  body {margin-left: 5em; margin-right: 5em} 
+  body {margin-left: 5em; margin-right: 5em}
  .title { text-align: center; }
   .todo  { color: red; }
   .done { color: green; }
@@ -161,7 +161,7 @@ util.lisp
 </ul>
 </li>
 <li>
-bar 
+bar
 <ul>
 <li>
 bar.lisp
@@ -185,8 +185,8 @@ util.lisp
 foo/foo.lisp:
 </p>
 <pre class="example">
- (defpackage :foo.foo 
-   (:use :cl 
+ (defpackage :foo.foo
+   (:use :cl
          :foo.util
          :bar.bar)
    (:export #:FOO))
@@ -197,7 +197,7 @@ foo/foo.lisp:
 foo/util.lisp:
 </p>
 <pre class="example">
- (defpackage :foo.util 
+ (defpackage :foo.util
    (:use :cl)
    (:export #:FOO-TOOL))
  ...
@@ -219,7 +219,7 @@ bar/util.lisp:
 </p>
 <pre class="example">
  (defpackage :bar.util
-   (:use :cl 
+   (:use :cl
          :bar.macros)
    (:export #:BAR-TOOL))
  ...
@@ -288,7 +288,7 @@ paths appropriately:
 
 <pre class="example">
  (load "/home/john/lisp/faslpath/faslpath.fasl")
- (use-package :faslpath) 
+ (use-package :faslpath)
  (setf *faslpath* '(#P"/home/john/lisp/"))
 </pre>
 
@@ -328,8 +328,8 @@ In the file my-app/main.lisp you need:
 </p>
 <pre class="example">
  (defpackage :my-app.main
-   (:use :cl 
-         :my-app.tools 
+   (:use :cl
+         :my-app.tools
          :my-app.macros
          :my-app.asdf-deps
          :my-external-lib.main)
@@ -450,7 +450,7 @@ the current file ever becomes loaded.
 Example:
 </p>
 <pre class="example">
- '(:my-app.tools 
+ '(:my-app.tools
    :my-app.macros
    :my-app.asdf-deps
    :my-external-lib.main
@@ -489,7 +489,7 @@ The following symbols are exported by the FASLPATH package:
 </p>
 <p>
 A list of directory pathnames that indicates where the root package
-directories are located.  
+directories are located.
 </p>
 
 </div>
@@ -515,7 +515,7 @@ only be loaded.
 <p>
 If MAKE-LOADER is t then a package loader will be
 generated.  The name of the loader file is of the form
-"foo-loader.lisp", assuming PACKAGE-SYMBOL ends with "FOO". 
+"foo-loader.lisp", assuming PACKAGE-SYMBOL ends with "FOO".
 </p>
 <p>
 If TABULA-RASA is t then any package compiled or loaded will be cleared

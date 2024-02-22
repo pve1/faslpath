@@ -30,19 +30,19 @@
 (in-package :faslpath.tools)
 
 (defun concatenate-binary-files (files output-file)
-  (let ((buf (make-array 10000 
+  (let ((buf (make-array 10000
                          :fill-pointer t
                          :element-type '(unsigned-byte 8))))
-    (with-open-file (out output-file 
+    (with-open-file (out output-file
                          :if-exists :supersede
-                         :direction :output 
+                         :direction :output
                          :element-type '(unsigned-byte 8))
       (dolist (in-file files)
         (setf (fill-pointer buf) 10000)
         (with-open-file (in in-file :element-type '(unsigned-byte 8))
           (loop :for read = (read-sequence buf in)
              :until (= 0 read)
-             :do (setf (fill-pointer buf) read)             
+             :do (setf (fill-pointer buf) read)
              (write-sequence buf out)))))))
 
 (defun invoke-main (package)
@@ -55,7 +55,7 @@
   (let ((p (find-package package-name)))
     (when p
       (dolist (used (package-use-list p))
-        (unuse-package used p)) 
+        (unuse-package used p))
       (do-symbols (s p)
         (unintern s p)))))
 
@@ -83,14 +83,14 @@
               (mapc-tree (rest tree) function)))))
 
 
-(defun prune-tree (tree list-predicate atom-predicate) 
+(defun prune-tree (tree list-predicate atom-predicate)
   (labels ((walk (tree)
              (typecase tree
                (null nil)
                (atom (if (funcall atom-predicate tree)
                          tree
                          nil))
-               (list                  
+               (list
                 (if (funcall list-predicate tree)
                     (cons (walk (first tree))
                           (walk (rest tree)))
@@ -99,7 +99,7 @@
 
 (defun tree-postorder (tree)
   (let ((nodes))
-    (mapc-tree tree (lambda (x) 
+    (mapc-tree tree (lambda (x)
                       (push x nodes)))
     nodes))
 

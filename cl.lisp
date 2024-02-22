@@ -25,13 +25,13 @@
 
 (defpackage #:faslpath.cl
   (:use #:cl)
-  (:shadow "DEFUN" 
+  (:shadow "DEFUN"
            "DEFVAR"
            "DEFGENERIC"
            "DEFPARAMETER"
            "DEFCLASS"
            "DEFSTRUCT"
-           "DEFINE-CONDITION")  
+           "DEFINE-CONDITION")
   (:export ;; All of CL
    "THROW" "FUNCTION-LAMBDA-EXPRESSION" "CHAR=" "DOUBLE-FLOAT-EPSILON" "PROGV"
    "WITH-OUTPUT-TO-STRING" "FFLOOR" "HASH-TABLE-SIZE" "ECHO-STREAM-INPUT-STREAM"
@@ -234,7 +234,7 @@
    "DEFINE-COMPILER-MACRO" "*PRINT-CASE*" "WITH-CONDITION-RESTARTS" "REAL"
    "MINUSP" "SYNONYM-STREAM" "SIN" "BIT-VECTOR-P" "IGNORE-ERRORS"
    "*PRINT-MISER-WIDTH*" "FROUND" "DEFINE-SYMBOL-MACRO" "RASSOC" "DECLAIM"))
-  
+
 (in-package :faslpath.cl)
 
 (cl:defun symbol-inherited-p (symbol)
@@ -279,7 +279,7 @@
              n))
   `(cl:defstruct ,name-and-options ,@slot-descriptions)))
 
-(defmacro define-condition (name (&rest parent-types) 
+(defmacro define-condition (name (&rest parent-types)
                             (&rest slot-specs)
                             &body options)
   (when (symbol-inherited-p name)
