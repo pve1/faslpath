@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then 
+    echo "Usage: `basename $0` PACKAGE-NAME [PARAMETERS]"
+    exit 1
+fi
+
+PACKAGE=$1
+shift
+
+clisp -on-error abort \
+      -q \
+      -x "(faslpath:load-package '#:$PACKAGE)" \
+      -x "($PACKAGE::main)" "$@"

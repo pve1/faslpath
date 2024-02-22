@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then 
+    echo "Usage: `basename $0` CORE-NAME [PARAMETERS]"
+    exit 1
+fi
+
+CORE=$1
+shift
+ccl -Q -b -I "$HOME/.faslpath-cores/$CORE.core" \
+     --eval "($CORE::main)" \
+     --eval "(quit)" "$@"
+

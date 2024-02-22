@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then 
+    echo "Usage: `basename $0` PACKAGE-NAME"
+    exit 1
+fi
+
+clisp -q \
+      -on-error abort \
+      -x "(faslpath:compile-package '#:$1)"

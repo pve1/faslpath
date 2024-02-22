@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then 
+    echo "Usage: `basename $0` CORE-NAME [PARAMETERS]"
+    exit 1
+fi
+
+CORE=$1
+shift
+
+clisp -M "$HOME/.faslpath-cores/$CORE.core" \
+      -on-error abort \
+      -q \
+      -x "($CORE::main)" "$@"
+

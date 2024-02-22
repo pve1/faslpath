@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then 
+    echo "Usage: `basename $0` PACKAGE-NAME [PARAMETERS]"
+    exit 1
+fi
+
+PACKAGE=$1
+shift
+
+sbcl --noinform \
+     --disable-debugger \
+     --eval "(faslpath:load-package '#:$PACKAGE)" \
+     --eval "($PACKAGE::main)" \
+     --eval "(quit)" \
+     --end-toplevel-options "$@"

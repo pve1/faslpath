@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ -z "$1" ]
+then 
+    echo "Usage: `basename $0` PACKAGE-NAME"
+    exit 1
+fi
+
+ccl -Q -b \
+     --eval "(faslpath:compile-package '#:$1)" \
+     --eval "(faslpath:load-package :faslpath.extras)" \
+     --eval "(faslpath.extras:make-package-lisp-core \"$1\")"
